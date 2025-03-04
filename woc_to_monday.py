@@ -1,5 +1,6 @@
 import json
 import os
+import sys
 import pandas as pd
 from datetime import datetime
 from Hjelpeskript.add_days_to_date import add_working_days_with_holidays
@@ -7,7 +8,11 @@ from Hjelpeskript.kommune_til_fylke import finn_fylke
 from Hjelpeskript.woc_excel_sortfile import split_excel_by_customer_category
 
 # Filstier
-json_file_path = "WoCReport_CwmProductionDetailedReport.json"  # Oppgi stien til JSON-filen
+# Use the uploaded JSON file passed from Streamlit
+if len(sys.argv) > 1:
+    json_file_path = sys.argv[1]
+else:
+    raise FileNotFoundError("No JSON file provided to the script.")
 target_excel_file = "Monday_Import.xlsx"  # Excel-fil hvor data skal lagres
 
 # Sletter excelfilen om den finnes fra før
