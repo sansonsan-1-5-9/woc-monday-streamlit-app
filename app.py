@@ -29,13 +29,7 @@ if uploaded_file:
     # Run the woc_to_monday.py script
     result = subprocess.run(["python", "woc_to_monday.py", temp_json_path], capture_output=True, text=True)
 
-    # Display output logs
-    st.subheader("🔍 Script Output")
-    st.text(result.stdout)
-
-    st.subheader("🚨 Errors (if any)")
-    st.text(result.stderr)
-
+    
     # List of expected output files
     st.subheader("📁 Output Files:")
     output_files = ["Monday_Import.xlsx", "Monday_Import - B.xlsx", "Monday_Import - P.xlsx"]
@@ -51,3 +45,12 @@ if uploaded_file:
                 )
         else:
             st.error(f"Processing failed or {output_file} was not generated.")
+    
+    # Display output logs
+    st.subheader("🔍 Script Output")
+    st.text(result.stdout)
+
+    st.subheader("🚨 Errors (if any)")
+    st.text(result.stderr)
+
+   
