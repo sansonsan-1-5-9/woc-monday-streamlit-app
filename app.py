@@ -3,14 +3,15 @@ import json
 import os
 import subprocess
 
+# Streamlit UI configuration (must be first command)
+st.set_page_config(page_title="WoC Report Processor", layout="wide")
+
 # Ensure dependencies are installed
 st.subheader("🔍 Checking & Installing Dependencies")
 required_packages = ["pandas", "numpy", "openpyxl", "streamlit"]
 for package in required_packages:
     subprocess.run(["pip", "install", package])
 
-# Streamlit UI
-st.set_page_config(page_title="WoC Report Processor", layout="wide")
 st.title("📊 WoC Report Processor")
 st.write("Upload a JSON file to process it using the 'woc_to_monday.py' script.")
 
