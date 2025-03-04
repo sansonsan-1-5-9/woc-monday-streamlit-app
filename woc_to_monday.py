@@ -216,8 +216,7 @@ def extract_product_ids(entry):
 def get_highest_priority_product(product_codes, woc_type_oppdrag):
     try:
         # Les inn Excel-filen
-        df = pd.read_excel("C:/Users/OdinSanson/PycharmProjects/Python_Telenor-woc/Datafiler"
-                           "/WOC_Prioritering_Produktkategorier.xlsx", engine="openpyxl")
+        df = pd.read_excel("Datafiler/WOC_Prioritering_Produktkategorier.xlsx", engine="openpyxl")
 
         # Filtrer etter de spesifikke produktkodene
         df_filtered = df[df['Produktkode'].isin(product_codes)]
