@@ -73,15 +73,15 @@ if uploaded_file:
         st.error("No PDFs were generated or directory does not exist.")
     
     # Display output logs
-    st.subheader("🔍 Script Output (WoC to Monday)")
-    st.text(result_monday.stdout)
+    # st.subheader("🔍 Script Output (WoC to Monday)")
+    # st.text(result_monday.stdout)
 
     if result_monday.stderr:
         st.subheader("🚨 Errors (if any) - WoC to Monday")
         st.text(result_monday.stderr)
     
-    st.subheader("🔍 Script Output (Generate PDF)")
-    st.text(result_pdf.stdout)
+    # st.subheader("🔍 Script Output (Generate PDF)")
+    # st.text(result_pdf.stdout)
     
     if (result_pdf.stderr):
         st.subheader("🚨 Errors (if any) - Generate PDF")
