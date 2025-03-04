@@ -43,6 +43,8 @@ def split_excel_by_customer_category(input_file):
     df_bedrift = df[df["Kunde Kategori"] == "bedrift"]
 
     # Lagre til nye Excel-filer
+    print(f"Saving Bedrift file at: {output_file_bedrift}")
+    print(f"Saving Privat file at: {output_file_priv}")
     df_priv.to_excel(output_file_priv, index=False)
     df_bedrift.to_excel(output_file_bedrift, index=False)
 
