@@ -10,7 +10,7 @@ st.set_page_config(page_title="WoC Report Processor", layout="wide")
 
 # Ensure dependencies are installed
 st.subheader("🔍 Checking & Installing Dependencies")
-required_packages = ["pandas", "numpy", "openpyxl", "streamlit"]
+required_packages = ["pandas", "numpy", "openpyxl", "streamlit", "fpdf"]
 for package in required_packages:
     subprocess.run(["pip", "install", package])
 
