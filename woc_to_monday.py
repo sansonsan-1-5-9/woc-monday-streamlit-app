@@ -13,6 +13,16 @@ if len(sys.argv) > 1:
 else:
     raise FileNotFoundError("No JSON file provided to the script.")
 
+# Define a valid output directory
+output_directory = os.path.dirname(os.path.abspath(__file__))
+
+# Ensure the directory exists before saving
+if not os.path.exists(output_directory):
+    os.makedirs(output_directory, exist_ok=True)
+
+# Define the full file path
+target_excel_file = os.path.join(output_directory, "Monday_Import.xlsx")
+
 # Sletter excelfilen om den finnes fra før
 try:
     os.remove(target_excel_file)
@@ -649,15 +659,7 @@ with open(json_file_path, "r", encoding="utf-8") as file:
 
 rows = extract_data_from_json(json_data)
 
-# Define a valid output directory
-output_directory = os.path.dirname(os.path.abspath(__file__))
 
-# Ensure the directory exists before saving
-if not os.path.exists(output_directory):
-    os.makedirs(output_directory, exist_ok=True)
-
-# Define the full file path
-target_excel_file = os.path.join(output_directory, "Monday_Import.xlsx")
 
 # Save the Excel file safely
 df = pd.DataFrame(rows, columns=columns)
