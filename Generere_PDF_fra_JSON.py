@@ -791,7 +791,7 @@ for entry in data:
 
 
     ### Lagre PDF
-    pdf.output(pdf_filepath, "F")
+    pdf.output(pdf_filepath)
 
 
 print(f"PDF-filer er generert i mappen: {output_folder}")
