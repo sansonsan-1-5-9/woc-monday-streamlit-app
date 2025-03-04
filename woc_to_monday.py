@@ -663,7 +663,8 @@ target_excel_file = os.path.join(output_directory, "Monday_Import.xlsx")
 df = pd.DataFrame(rows, columns=columns)
 with pd.ExcelWriter(target_excel_file, engine="openpyxl", mode="w") as writer:
     df.to_excel(writer, index=False, sheet_name="Data")
-
+    
+print(f"Saving main Excel file at: {target_excel_file}")
 split_excel_by_customer_category(target_excel_file)
 
 print(f"Data er eksportert til {target_excel_file}")
