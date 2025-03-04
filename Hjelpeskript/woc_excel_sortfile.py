@@ -26,10 +26,6 @@ def split_excel_by_customer_category(input_file):
     # Correctly define file paths
     output_file_priv = os.path.join(output_directory, "Monday_Import - P.xlsx")
     output_file_bedrift = os.path.join(output_directory, "Monday_Import - B.xlsx")
-    
-    # Save the data
-    df_priv.to_excel(output_file_priv, index=False)
-    df_bedrift.to_excel(output_file_bedrift, index=False)
 
 
     # Les Excel-filen
