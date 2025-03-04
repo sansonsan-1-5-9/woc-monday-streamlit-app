@@ -3,14 +3,16 @@ import json
 import os
 import subprocess
 
-st.subheader("🔍 Installed Packages in Streamlit Cloud")
-result = subprocess.run(["pip", "list"], capture_output=True, text=True)
-st.text(result.stdout)
+# Ensure dependencies are installed
+st.subheader("🔍 Checking & Installing Dependencies")
+required_packages = ["pandas", "numpy", "openpyxl", "streamlit"]
+for package in required_packages:
+    subprocess.run(["pip", "install", package])
 
 # Streamlit UI
 st.set_page_config(page_title="WoC Report Processor", layout="wide")
 st.title("📊 WoC Report Processor")
-st.write("Upload a JSON file to process it using the 'woc-to-monday.py' script.")
+st.write("Upload a JSON file to process it using the 'woc_to_monday.py' script.")
 
 # File uploader
 uploaded_file = st.file_uploader("📂 Upload JSON File", type="json")
@@ -23,11 +25,14 @@ if uploaded_file:
 
     st.write("Processing the uploaded file...")
 
-    # Run the woc-to-monday.py script
+    # Run the woc_to_monday.py script
     result = subprocess.run(["python", "woc_to_monday.py", temp_json_path], capture_output=True, text=True)
 
     # Display output logs
+    st.subheader("🔍 Script Output")
     st.text(result.stdout)
+
+    st.subheader("🚨 Errors (if any)")
     st.text(result.stderr)
 
     # List of expected output files
