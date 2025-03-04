@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Laste inn Excel-filen
-file_path = "C:/Users/OdinSanson/PycharmProjects/Python_Telenor-woc/Datafiler/Kommune_Fylke_Oversikt.xlsx"
+file_path = "Datafiler/Kommune_Fylke_Oversikt.xlsx"
 df = pd.read_excel(file_path, sheet_name="Ark1")
 
 # Rense kolonnenavn
