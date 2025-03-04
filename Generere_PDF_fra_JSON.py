@@ -6,7 +6,12 @@ from datetime import datetime
 from Hjelpeskript.kommune_til_fylke import finn_fylke
 
 # Filstier
-json_file_path = "WoCReport_CwmProductionDetailedReport.json"
+# Use the uploaded JSON file passed from Streamlit
+if len(sys.argv) > 1:
+    json_file_path = sys.argv[1]
+else:
+    raise FileNotFoundError("No JSON file provided to the script.")
+
 output_folder = "generated_pdfs/"
 
 # Opprett mappe for PDF-filer hvis den ikke finnes
