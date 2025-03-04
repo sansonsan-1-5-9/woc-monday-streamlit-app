@@ -1,6 +1,6 @@
 ﻿streamlit
-pandas
-numpy
+pandas==2.2.3
+numpy>=1.26.0,<2.0.0
 openpyxl
 numpy
 requests
