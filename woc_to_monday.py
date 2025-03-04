@@ -13,7 +13,15 @@ if len(sys.argv) > 1:
     json_file_path = sys.argv[1]
 else:
     raise FileNotFoundError("No JSON file provided to the script.")
-target_excel_file = "Monday_Import.xlsx"  # Excel-fil hvor data skal lagres
+# Define a safe directory for saving files
+output_directory = os.path.dirname(os.path.abspath(__file__))
+
+# Ensure the directory exists before saving
+if not os.path.exists(output_directory):
+    os.makedirs(output_directory, exist_ok=True)
+
+# Use a safe file path
+target_excel_file = os.path.join(output_directory, "Monday_Import.xlsx")
 
 # Sletter excelfilen om den finnes fra før
 try:
