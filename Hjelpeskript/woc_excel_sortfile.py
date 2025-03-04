@@ -15,8 +15,21 @@ def split_excel_by_customer_category(input_file):
         None
     """
     # Definer utfilene
-    output_file_priv = "C:/Users/OdinSanson/PycharmProjects/Python_Telenor-woc/Monday_Import - P.xlsx"
-    output_file_bedrift = "C:/Users/OdinSanson/PycharmProjects/Python_Telenor-woc/Monday_Import - B.xlsx"
+    # Use the current script's directory to save output files
+    output_directory = os.path.dirname(os.path.abspath(__file__))
+    
+    # Ensure the directory exists
+    if not os.path.exists(output_directory):
+        os.makedirs(output_directory, exist_ok=True)
+    
+    # Correctly define file paths
+    output_file_priv = os.path.join(output_directory, "Monday_Import - P.xlsx")
+    output_file_bedrift = os.path.join(output_directory, "Monday_Import - B.xlsx")
+    
+    # Save the data
+    df_priv.to_excel(output_file_priv, index=False)
+    df_bedrift.to_excel(output_file_bedrift, index=False)
+
 
     # Les Excel-filen
     df = pd.read_excel(input_file)
