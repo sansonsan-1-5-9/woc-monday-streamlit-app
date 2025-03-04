@@ -47,10 +47,10 @@ if uploaded_file:
             st.error(f"Processing failed or {output_file} was not generated.")
     
     # Display output logs
-    st.subheader("🔍 Script Output")
-    st.text(result.stdout)
+    # st.subheader("🔍 Script Output")
+    # st.text(result.stdout)
 
-    st.subheader("🚨 Errors (if any)")
-    st.text(result.stderr)
+    # st.subheader("🚨 Errors (if any)")
+    # st.text(result.stderr)
 
    
