@@ -7,21 +7,11 @@ from Hjelpeskript.add_days_to_date import add_working_days_with_holidays
 from Hjelpeskript.kommune_til_fylke import finn_fylke
 from Hjelpeskript.woc_excel_sortfile import split_excel_by_customer_category
 
-# Filstier
 # Use the uploaded JSON file passed from Streamlit
 if len(sys.argv) > 1:
     json_file_path = sys.argv[1]
 else:
     raise FileNotFoundError("No JSON file provided to the script.")
-# Define a safe directory for saving files
-output_directory = os.path.dirname(os.path.abspath(__file__))
-
-# Ensure the directory exists before saving
-if not os.path.exists(output_directory):
-    os.makedirs(output_directory, exist_ok=True)
-
-# Use a safe file path
-target_excel_file = os.path.join(output_directory, "Monday_Import.xlsx")
 
 # Sletter excelfilen om den finnes fra før
 try:
@@ -659,13 +649,20 @@ with open(json_file_path, "r", encoding="utf-8") as file:
 
 rows = extract_data_from_json(json_data)
 
-if os.path.exists(target_excel_file):
-    with pd.ExcelWriter(target_excel_file, engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-        df = pd.DataFrame(rows, columns=columns)
-        df.to_excel(writer, index=False, sheet_name="Data", startrow=writer.sheets["Data"].max_row)
-else:
-    df = pd.DataFrame(rows, columns=columns)
-    df.to_excel(target_excel_file, index=False, sheet_name="Data")
+# Define a valid output directory
+output_directory = os.path.dirname(os.path.abspath(__file__))
+
+# Ensure the directory exists before saving
+if not os.path.exists(output_directory):
+    os.makedirs(output_directory, exist_ok=True)
+
+# Define the full file path
+target_excel_file = os.path.join(output_directory, "Monday_Import.xlsx")
+
+# Save the Excel file safely
+df = pd.DataFrame(rows, columns=columns)
+with pd.ExcelWriter(target_excel_file, engine="openpyxl", mode="w") as writer:
+    df.to_excel(writer, index=False, sheet_name="Data")
 
 split_excel_by_customer_category(target_excel_file)
 
