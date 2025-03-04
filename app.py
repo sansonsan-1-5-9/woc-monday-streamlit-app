@@ -76,11 +76,13 @@ if uploaded_file:
     st.subheader("🔍 Script Output (WoC to Monday)")
     st.text(result_monday.stdout)
 
-    st.subheader("🚨 Errors (if any) - WoC to Monday")
-    st.text(result_monday.stderr)
+    if result_monday.stderr:
+        st.subheader("🚨 Errors (if any) - WoC to Monday")
+        st.text(result_monday.stderr)
     
     st.subheader("🔍 Script Output (Generate PDF)")
     st.text(result_pdf.stdout)
     
-    st.subheader("🚨 Errors (if any) - Generate PDF")
-    st.text(result_pdf.stderr)
+    if (result_pdf.stderr):
+        st.subheader("🚨 Errors (if any) - Generate PDF")
+        st.text(result_pdf.stderr)
