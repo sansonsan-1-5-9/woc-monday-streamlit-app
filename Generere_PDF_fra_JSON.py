@@ -176,6 +176,7 @@ for entry in data:
 
     # 4) CircuitId: finn resourceId i serviceDetails med resourceType="CircuitId"
     circuit_id = ""
+    customer_id = ""
     sd_list = entry["detailedOrderInformation"].get("serviceDetails", [])
 
     if sd_list:
