@@ -20,7 +20,7 @@ if uploaded_file:
     st.write("Processing the uploaded file...")
 
     # Run the woc-to-monday.py script
-    result = subprocess.run(["python", "woc-to-monday.py", temp_json_path], capture_output=True, text=True)
+    result = subprocess.run(["python", "woc_to_monday.py", temp_json_path], capture_output=True, text=True)
 
     # Display output logs
     st.text(result.stdout)
