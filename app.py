@@ -37,6 +37,7 @@ if uploaded_file:
     st.text(result.stderr)
 
     # List of expected output files
+    st.subheader("📁 Output Files:")
     output_files = ["Monday_Import.xlsx", "Monday_Import - B.xlsx", "Monday_Import - P.xlsx"]
 
     for output_file in output_files:
