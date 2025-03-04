@@ -16,9 +16,9 @@ def split_excel_by_customer_category(input_file):
         None
     """
     # Definer utfilene
-    # Use the current script's directory to save output files
-    output_directory = os.path.dirname(os.path.abspath(__file__))
     
+    output_directory = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
     # Ensure the directory exists
     if not os.path.exists(output_directory):
         os.makedirs(output_directory, exist_ok=True)
