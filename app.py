@@ -14,7 +14,7 @@ required_packages = ["pandas", "numpy", "openpyxl", "streamlit", "fpdf"]
 for package in required_packages:
     subprocess.run(["pip", "install", package])
 
-st.title("📊 WoC Report Processor")
+st.title("📊 WoC JSON-Report Processor")
 st.write("Upload a JSON file to process it using the 'woc_to_monday.py' and 'Generere_PDF_fra_JSON.py' scripts.")
 
 # File uploader
