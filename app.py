@@ -3,6 +3,10 @@ import json
 import os
 import subprocess
 
+st.subheader("🔍 Installed Packages in Streamlit Cloud")
+result = subprocess.run(["pip", "list"], capture_output=True, text=True)
+st.text(result.stdout)
+
 # Streamlit UI
 st.set_page_config(page_title="WoC Report Processor", layout="wide")
 st.title("📊 WoC Report Processor")
