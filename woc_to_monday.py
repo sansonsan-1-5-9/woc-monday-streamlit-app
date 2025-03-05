@@ -259,6 +259,29 @@ def extract_woc_type_oppdrag(entry):
 
     return woc_type_oppdrag
 
+# Type oppdrag til Monday
+def determine_type_oppdrag(orderinfo_description, VULA_nr, prioritert_product_id):
+    """
+    Bestemmer type oppdrag basert på ordrebeskrivelse, leveransestatus, WOC-type oppdrag og VULA-referanser.
+
+    :param orderinfo_description: Ordrebeskrivelse (str).
+    :param VULA_nr: VULA-referansenummer (str eller list).
+    :return: Type oppdrag (str) eller None hvis ingen kriterier er oppfylt.
+    """
+    if orderinfo_description == "BB_ACCESS":
+        return "BB-Access"
+    elif "LVA1A" in prioritert_product_id: #status_leveranse == "NY FTTH" or
+        return "Komplett fortetning"
+    elif "LVK0" in prioritert_product_id:
+        return "Eksperthjelpen"
+    elif "LVK2F" in prioritert_product_id:
+        return "Installasjonshjelpen"
+    elif VULA_nr == "VULA":
+        return "VULA"
+    elif VULA_nr == "VULA CDK":
+        return "VULA CDK"
+    return None
+
 # Beskrivelse av produktet
 def extract_product_descriptions(entry):
     """
@@ -355,32 +378,6 @@ def determine_status_leveranse(orderlines_productId, spidernummer, orderinfo_des
         print(f"{item} - Oppdrag kategori må sjekkes")
         return None
 
-# Type oppdrag til Monday
-def determine_type_oppdrag(orderinfo_description, status_leveranse, woc_type_oppdrag, VULA_nr):
-    """
-    Bestemmer type oppdrag basert på ordrebeskrivelse, leveransestatus, WOC-type oppdrag og VULA-referanser.
-
-    :param orderinfo_description: Ordrebeskrivelse (str).
-    :param status_leveranse: Status for leveranse (str).
-    :param woc_type_oppdrag: Liste over WOC-type oppdrag (list).
-    :param VULA_nr: VULA-referansenummer (str eller list).
-    :return: Type oppdrag (str) eller None hvis ingen kriterier er oppfylt.
-    """
-    if orderinfo_description == "BB_ACCESS":
-        return "BB-Access"
-    elif status_leveranse == "NY FTTH":
-        return "Komplett fortetning"
-    elif status_leveranse == "NY privat":
-        if any("Eksperthjelpen" in oppdrag for oppdrag in woc_type_oppdrag):
-            return "Eksperthjelpen"
-        elif any("Installasjonshjelpen" in oppdrag for oppdrag in woc_type_oppdrag):
-            return "Installasjonshjelpen"
-    elif VULA_nr == "VULA":
-        return "VULA"
-    elif VULA_nr == "VULA CDK":
-        return "VULA CDK"
-
-    return None
 
 # Type FTTx til monday
 def determine_fttx(orderlines_productId, spidernummer, contract_details, gpon_p2p_woc, orderinfo_description,status_leveranse, oppdrag_kategori, item):
