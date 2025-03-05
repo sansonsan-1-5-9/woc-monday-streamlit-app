@@ -280,6 +280,12 @@ def determine_type_oppdrag(orderinfo_description, VULA_nr, prioritert_product_id
         return "VULA"
     elif VULA_nr == "VULA CDK":
         return "VULA CDK"
+    elif "LVT2D" in prioritert_product_id:
+        return "AEG"
+    elif "LVT1C" in prioritert_product_id:
+        return "Leveranse timer - Fiber"
+    elif "DLS99" in prioritert_product_id:
+        return "DLS99"
     return None
 
 # Beskrivelse av produktet
