@@ -6,6 +6,7 @@ from datetime import datetime
 from Hjelpeskript.add_days_to_date import add_working_days_with_holidays
 from Hjelpeskript.kommune_til_fylke import finn_fylke
 from Hjelpeskript.woc_excel_sortfile import split_excel_by_customer_category
+from Hjelpeskript.fylke_kommune_entreprenor import finn_entreprenor
 
 # Use the uploaded JSON file passed from Streamlit
 if len(sys.argv) > 1:
@@ -68,12 +69,14 @@ def extract_work_order_details(entry):
         if house_char:
             adr_step += house_char
         adresse = f"{adr_step}, {street_address.get('city')}, Norge"
+        post_nummer = street_address.get('postalCode')
     else:
         cadastral_unit = work_order_address.get('cadastralUnit', {})
         municipality = cadastral_unit.get('municipalityName')
         cadastral_unit_number = cadastral_unit.get('cadastralUnitNumber')
         property_unit_number = cadastral_unit.get('propertyUnitNumber')
         adresse = f"Gnr. {cadastral_unit_number} Bnr. {property_unit_number}"
+        post_nummer = cadastral_unit.get('postalCode')
 
     # Hent fylke basert på kommunenavn
     fylke = finn_fylke(municipality)
@@ -84,7 +87,7 @@ def extract_work_order_details(entry):
     x_koordinat = coordinates.get("x")
     y_koordinat = coordinates.get("y")
 
-    return adresse, municipality, fylke, coordsys, x_koordinat, y_koordinat
+    return adresse, post_nummer, municipality, fylke, coordsys, x_koordinat, y_koordinat
 
 # Kundenavn og kontaktinfo
 def extract_contact_info(entry):
@@ -489,7 +492,7 @@ def extract_data_from_json(json_data):
         item = extract_item(entry)
 
         # Håndterer WorkOrderAddress som liste
-        addresse, municipality, fylke, coordsys, x_koordinat, y_koordinat = extract_work_order_details(entry)
+        addresse, post_nummer, municipality, fylke, coordsys, x_koordinat, y_koordinat = extract_work_order_details(entry)
 
         # Kundenavn og kontaktinfo
         kunde_navn, telefon_nr = extract_contact_info(entry)
@@ -560,7 +563,7 @@ def extract_data_from_json(json_data):
         gpon_p2p = determine_gpon_p2p(status_leveranse, VULA_nr, gpon_p2p_woc)
 
         # Legge til underentreprenør
-        under_entreprenor = None
+        under_entreprenor = finn_entreprenor(post_nummer)
 
         # Statuser
         woc_status = None
