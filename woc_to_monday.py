@@ -545,7 +545,7 @@ def extract_data_from_json(json_data):
                                                       contract_details, gpon_p2p_woc, VULA_nr, oppdrag_kategori, item)
 
         # Type oppdrag til Monday
-        type_oppdrag = determine_type_oppdrag(orderinfo_description, status_leveranse, woc_type_oppdrag, VULA_nr)
+        type_oppdrag = determine_type_oppdrag(orderinfo_description, VULA_nr, prioritert_product_id)
 
         # Type FTTx til Monday
         FTTx = determine_fttx(orderlines_productId, spidernummer, contract_details, gpon_p2p_woc, orderinfo_description, status_leveranse, oppdrag_kategori, item)
