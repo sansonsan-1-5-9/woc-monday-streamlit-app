@@ -616,7 +616,8 @@ for entry in data:
 
             # Skriv én rad i tabellen
             pdf.cell(25, 4, workorder_id, ln=False)
-            pdf.cell(30, 4, contractor_name, ln=False)
+            if contractor_name:
+                pdf.cell(30, 4, contractor_name, ln=False)
             pdf.cell(30, 4, contact_name, ln=False)
             pdf.cell(15, 4, role, ln=False)
             pdf.cell(20, 4, phone, ln=False)
