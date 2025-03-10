@@ -493,6 +493,7 @@ def extract_data_from_json(json_data):
 
         # Håndterer WorkOrderAddress som liste
         addresse, post_nummer, municipality, fylke, coordsys, x_koordinat, y_koordinat = extract_work_order_details(entry)
+        fylke_status = fylke #for å lage en statuskolonne i Monday, kun for importboardet og automation
 
         # Kundenavn og kontaktinfo
         kunde_navn, telefon_nr = extract_contact_info(entry)
@@ -584,6 +585,7 @@ def extract_data_from_json(json_data):
             bookes_innen,
             ordre_dato,
             under_entreprenor,
+            fylke_status,
             start_arbeid_tidligst,
             dato_leveranse,
             woc_status,
@@ -629,6 +631,7 @@ columns = [
     "Bookes innen",
     "Ordredato",
     "Entreprenør",
+    "Fylke Status",
     "Start arbeid tidligst",
     "Dato leveranse",
     "WOC Status",
