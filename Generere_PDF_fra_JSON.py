@@ -333,7 +333,7 @@ for entry in data:
     pdf.section_title("WorkOrder Address")
     pdf.ln(2)
     user1 = entry.get("detailedOrderInformation", {}).get("user1", {})
-        if user1:
+    if user1:
         address_data = user1.get("address", {})
         street_data = address_data.get("streetAddress", {})
     work_order_address = entry.get("workOrderAddress", [{}])[0]
