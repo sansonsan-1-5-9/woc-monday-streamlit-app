@@ -9,3 +9,4 @@ python-docx
 Jinja2
 cryptography
 fpdf
+dateutil
