@@ -381,13 +381,14 @@ for entry in data:
 
         # Koordinater
         coordinates = street_data.get("coordinates", {})
-        system = coordinates.get("system", "")
-        x_val = coordinates.get("x", "")
-        y_val = coordinates.get("y", "")
+        if coordinates:
+            system = coordinates.get("system", "")
+            x_val = coordinates.get("x", "")
+            y_val = coordinates.get("y", "")
 
-        pdf.cell(0, 5, f"Coordinates ({system}):", ln=True)
-        pdf.cell(0, 4, f"    X: {x_val}", ln=True)
-        pdf.cell(0, 4, f"    Y: {y_val}", ln=True)
+            pdf.cell(0, 5, f"Coordinates ({system}):", ln=True)
+            pdf.cell(0, 4, f"    X: {x_val}", ln=True)
+            pdf.cell(0, 4, f"    Y: {y_val}", ln=True)
     elif work_order_address:
 
 
