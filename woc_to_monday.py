@@ -533,7 +533,7 @@ def extract_data_from_json(json_data):
 
         # Datoer
         issued_date = entry.get("issuedDate").split("T")[0]
-        bookes_innen = add_working_days_with_holidays(issued_date, 5)
+        bookes_innen = add_working_days_with_holidays(issued_date, 4)
         start_arbeid_tidligst = format_date(entry.get("deliveryPeriod", {}).get("startDate"))
         ordre_dato = get_latest_accept_workorder_date(entry.get("activityLog"))
         if not ordre_dato:
