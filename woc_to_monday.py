@@ -541,6 +541,7 @@ def extract_data_from_json(json_data):
             ordre_dato = issued_date
         last_transaction_date = format_date(entry.get("modifiedDate"))
         dato_leveranse = format_date(entry.get("deliveryPeriod", {}).get("endDate"))
+        due_date = dato_leveranse
 
         # Ordrenummer
         ordrenr_leveranse = entry.get("clientOrderId", {}).get("referenceNumber")
@@ -635,6 +636,7 @@ def extract_data_from_json(json_data):
             contract_details,
             FTTx,
             ordre_pris,
+            due_date,
             oppdrag_kategori,
             gpon_p2p,
             gpon_p2p_woc,
@@ -682,6 +684,7 @@ columns = [
     "kontraktdetaljer",
     "Type FTTx",
     "Ordreverdi",
+    "Due Date",
     "Kunde Kategori",
     "GPON/P2P",
     "GPON/P2P - WOC",
