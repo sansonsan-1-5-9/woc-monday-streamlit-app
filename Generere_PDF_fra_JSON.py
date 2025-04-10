@@ -335,7 +335,8 @@ for entry in data:
     user1 = entry.get("detailedOrderInformation", {}).get("user1", {})
     if user1:
         address_data = user1.get("address", {})
-        street_data = address_data.get("streetAddress", {})
+        if address_data:
+            street_data = address_data.get("streetAddress", {})
     work_order_address = entry.get("workOrderAddress", [{}])[0]
     pdf.set_font("Arial", "", 10)
 
@@ -352,10 +353,6 @@ for entry in data:
 
         pdf.cell(0, 4, f"Organisation Id: {org_id}", ln=True)
         pdf.cell(0, 4, f"FullName: {full_name}", ln=True)
-
-        # Hent ut adressefelt
-        address_data = user1.get("address", {})
-        street_data = address_data.get("streetAddress", {})
 
         municipality_number = street_data.get("municipalityNumber", "")
         municipality_name = street_data.get("municipalityName", "")
