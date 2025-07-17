@@ -121,7 +121,7 @@ for entry in data:
     # Hopp over rader hvor supplier.contactPersons ikke er tom
     if entry.get("supplier", {}).get("contactPersons"):
         continue
-    elif not entry.get("wocOrderStatus", {}).lower() in ['accepted', 'received']:
+    elif not entry.get("wocOrderStatus", {}).lower() in ['accepted', 'received', 'appointed']:
         continue
 
     ### Bygg en filnavn-vennlig tittel
