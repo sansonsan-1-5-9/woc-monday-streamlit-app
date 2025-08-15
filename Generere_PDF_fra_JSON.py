@@ -348,8 +348,9 @@ for entry in data:
 
         pdf.set_font("Arial", "", 10)
 
-        org_id = user1.get("organizationId", "-")
-        full_name = user1.get("fullName", "")
+        if user1:
+            org_id = user1.get("organizationId", "-")
+            full_name = user1.get("fullName", "")
 
         pdf.cell(0, 4, f"Organisation Id: {org_id}", ln=True)
         pdf.cell(0, 4, f"FullName: {full_name}", ln=True)
@@ -811,3 +812,4 @@ for entry in data:
 
 
 print(f"PDF-filer er generert i mappen: {output_folder}")
+
