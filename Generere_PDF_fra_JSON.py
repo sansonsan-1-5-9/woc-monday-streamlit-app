@@ -309,7 +309,7 @@ for entry in data:
     pdf.set_font("Arial", "", 10)  # Normal font for detaljer
     pdf.cell(0, 4, f"Name: {contact_persons[0].get('firstName', '')} {contact_persons[0].get('familyName', '')}".strip(), ln=True)
     pdf.cell(0, 4, f"Role: {contact_persons[0].get('role', '')}", ln=True)
-    pdf.cell(0, 4, f"Phone: {contact_persons[0].get('phone1').strip()}", ln=True)
+    pdf.cell(0, 4, f"Phone: {(contact_persons[0].get('phone1') or 'Ukjent').strip() if isinstance(contact_persons[0].get('phone1'), str) else 'Ukjent'}", ln=True)
     pdf.cell(0, 4, f"Email: {contact_persons[0].get('email', '')}", ln=True)
     pdf.ln(2)
 
@@ -812,4 +812,5 @@ for entry in data:
 
 
 print(f"PDF-filer er generert i mappen: {output_folder}")
+
 
