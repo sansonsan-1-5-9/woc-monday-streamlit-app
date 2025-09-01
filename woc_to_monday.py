@@ -108,7 +108,8 @@ def extract_contact_info(entry):
     # Sjekk om det finnes kontaktpersoner
     if contact_persons:
         kunde_navn = f"{contact_persons[0].get('firstName', '')} {contact_persons[0].get('familyName', '')}".strip()
-        telefon_nr = contact_persons[0].get("phone1", "").strip()
+        telefon_raw = contact_persons[0].get("phone1", "")
+        telefon_nr = telefon_raw.strip() if isinstance(telefon_raw, str) else "Ukjent"
     else:
         kunde_navn = "Ukjent"
         telefon_nr = "Ukjent"
